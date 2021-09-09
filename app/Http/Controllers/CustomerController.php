@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Today_cost;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
-class TodayCostController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TodayCostController extends Controller
      */
     public function index()
     {
-        return view('fontend.today_cost.index', ['today_costs' => Today_cost::all()]);
+        return view('fontend.customer.index', ['customers' => Customer::all()]);
     }
 
     /**
@@ -37,59 +37,64 @@ class TodayCostController extends Controller
     {
         $attributes = $request->validate([
             'name' => 'required',
-            'taka' => 'required',
+            'phone' => 'required|unique:customers|max:11',
+            'email' => 'required|unique:customers',
+            'address' => 'required',
         ]);
-        Today_cost::create($attributes);
-        return redirect()->route('today_cost.index');
+        Customer::create($attributes);
+        return redirect()->route('customer.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Today_cost  $today_cost
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Today_cost $today_cost)
+    public function show(Customer $customer)
     {
+        // return view('fontend.customer.partials.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Today_cost  $today_cost
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Today_cost $today_cost)
+    public function edit(Customer $customer)
     {
-        return $today_cost;
+        return $customer;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Today_cost  $today_cost
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Today_cost $today_cost)
+    public function update(Request $request, Customer $customer)
     {
         $attributes = $request->validate([
             'name' => 'required',
-            'taka' => 'required',
+            'phone' => 'required|max:11',
+            'email' => 'required',
+            'address' => 'required',
         ]);
-        $today_cost->update($attributes);
-        return redirect()->route('today_cost.index');
+        $customer->update($attributes);
+        return redirect()->route('customer.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Today_cost  $today_cost
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Today_cost $today_cost)
+    public function destroy(Customer $customer)
     {
-        $today_cost->dalete();
-        return redirect()->route('today_cost.index');
+        $customer->delete();
+        return redirect()->route('customer.index');
     }
 }

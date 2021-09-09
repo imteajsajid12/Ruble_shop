@@ -152,7 +152,7 @@
                            <i class="fas fa-chart-bar"></i>Stock</a>
                    </li>
                    <li>
-                       <a href="{{ route('admin.sell') }}">
+                       <a href="{{ route('today_cost.index') }}">
                            <i class="fas fa-table"></i>Today Cost</a>
                    </li>
                    <li>
