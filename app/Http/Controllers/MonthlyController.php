@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer_payment;
 use App\Models\Monthly;
 use App\Models\Sell;
 use App\Models\Today_cost;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class MonthlyController extends Controller
@@ -16,7 +18,7 @@ class MonthlyController extends Controller
      */
     public function index()
     {
-        //
+        return view('fontend.monthly.index', ['monthly' => Monthly::all()]);
     }
 
     /**
@@ -37,9 +39,35 @@ class MonthlyController extends Controller
      */
     public function store(Request $request)
     {
+        $data = Customer_payment::all();
+        $month = Monthly::all();
+        $due1 = $data->sum('due')
+            - $data->sum('pay');
+        $a = 1;
+        $b = 2;
+        if ($month->sum('due_price') < $due1) {
+            $due = $due1 - $month->sum('due_price');
+            //dd($due);
+        } else {
+            $due = $due1;
+        }
+        //dd($month);
+        //if (!is_null($month)) {
+        //    $due = $data->sum('due')
+        //        - $data->sum('pay');
+        //    //dd($due);
+        //} else {
+        //    $due = $data->sum('due')
+        //        - $data->sum('pay');
+        //    if ($due < $month->sum('due_price')) {
+        //        dd('big');
+        //        $due = $month->sum('due_price') - $data->sum('due')
+        //            - $data->sum('pay');
+        //    }
+        //    dd("kk");
+        //}
         $sell = Sell::all();
         $cost = Today_cost::sum('taka');
-        $due = 0;
         $pay = 0;
         $quantity = $sell->sum('product_quantity');
         $product_price = $sell->sum('product_price');
@@ -52,6 +80,10 @@ class MonthlyController extends Controller
         $this->data['sell_total_price']    = $total_price;
         $this->data['product_price']       = $product_price;
         Monthly::create($this->data);
+        Sell::getQuery()->delete();
+        Today_cost::getQuery()->delete();
+        //Sell::getQuery()->delete();
+
         return redirect()->route('admin.home');
     }
 

@@ -36,6 +36,5 @@ Route::resource('/admin/customer_payment', CustomerPaymentController::class)->mi
 //sell
 Route::get('/admin/Sell', [SellController::class, 'view'])->name('admin.sell')->middleware('role:user');
 Route::get('/admin/total_sell', [SellController::class, 'total_sell'])->name('admin.totel_sell')->middleware('role:user');
-Route::get('/admin/monthly_add', [MonthlyController::class, 'store'])->name('admin.month')->middleware('role:user');
-
+Route::resource('/admin/monthly', MonthlyController::class)->middleware('role:user');
 //Route::get('/admin/invoice', [SaveController::class, 'invoice'])->middleware('role:user');

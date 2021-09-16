@@ -4,7 +4,7 @@
            <div class="container-fluid">
                <div class="header-mobile-inner">
                    <a class="logo" href="index.html">
-                       <img src="images/icon/logo.png" alt="CoolAdmin" />
+                       <img src="/assets/images/icon/logo.png" alt="Cool Admin" />
                    </a>
                    <button class="hamburger hamburger--slider" type="button">
                        <span class="hamburger-box">
@@ -43,7 +43,7 @@
                            <i class="far fa-check-square"></i>Customer</a>
                    </li>
                    <li>
-                       <a href="calendar.html">
+                       <a href="{{ route('monthly.index') }}">
                            <i class="fas fa-calendar-alt"></i>Earnings</a>
 
                    </li>
@@ -91,9 +91,8 @@
                            <i class="far fa-check-square"></i>Customer</a>
                    </li>
                    <li>
-                       <a href="calendar.html">
+                       <a href="{{ route('monthly.index') }}">
                            <i class="fas fa-calendar-alt"></i>Earnings</a>
-
                    </li>
 
            </nav>

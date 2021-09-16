@@ -144,6 +144,6 @@ class SellController extends Controller
     }
     public function total_sell()
     {
-        return view('fontend.total_sell.index', ['products' => Stock::all()]);
+        return view('fontend.total_sell.index', ['products' => Sell::all()]);
     }
 }

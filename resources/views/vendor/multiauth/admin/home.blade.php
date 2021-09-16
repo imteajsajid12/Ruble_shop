@@ -25,10 +25,11 @@
                 <div class="col-md-12">
                     <div class="overview-wrap">
                         <h2 class="title-1">overview</h2>
-                        <a onclick="return confirm('Are you sure?');" href="{{route('admin.month')}}" class="au-btn au-btn-icon au-btn--blue">
-
-
-                            <i class="zmdi zmdi-plus"></i>Monthly Add</a>
+                        <form action="{{route('monthly.store')}}" method="POST">
+                            @csrf
+                            <button type="submit" class="au-btn au-btn-icon au-btn--blue">
+                                Monthly Add </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -147,7 +148,7 @@
                 <div class="col-lg-6">
                     <div class="au-card chart-percent-card">
                         <div class="au-card-inner">
-                            <h3 class="title-2 tm-b-5">char by %</h3>
+                            <h3 class="title-2 tm-b-5">Product char by %</h3>
                             <div class="row no-gutters">
                                 <div class="col-xl-6">
                                     <div class="chart-note-wrap">

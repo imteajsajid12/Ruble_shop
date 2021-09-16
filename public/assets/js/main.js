@@ -343,7 +343,7 @@
           datasets: [
             {
               label: "My First dataset",
-              data: [stock_id, 60],
+              data: [stock_id, sell_id],
               backgroundColor: [
                 '#00b5e9',
                 '#fa4251'
