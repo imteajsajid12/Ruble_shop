@@ -16,6 +16,10 @@ class Sell extends Model
         'product_price',
         'sell_price',
         'image',
-        'product_Size',
+        'product_size',
+        'total_price',
+        'discount',
+        'pay',
+        'due',
     ];
 }

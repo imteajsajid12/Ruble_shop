@@ -16,5 +16,7 @@ class Save extends Model
         'product_quantity',
         'product_size',
         'image',
+        'discount',
+        'total_price',
     ];
 }

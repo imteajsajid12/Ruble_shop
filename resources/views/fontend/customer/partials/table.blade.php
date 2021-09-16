@@ -7,7 +7,7 @@
   </div>
   <!-- DATA TABLE -->
   <div class="table-responsive m-b-40">
-      <table class="table table-borderless" id="example">
+      <table class="table table-borderless" id="data_table">
 
           <thead class="thead-dark">
               <tr>
@@ -35,7 +35,7 @@
                               <div class="btn-group" role="group" aria-label="First group">
                                   <button type="button" class="btn btn-outline-info btn-icon mr-1 editbtn" data-toggle="modal" data-target="#Edit_model">
                                       <i class="zmdi zmdi-edit"></i></button>
-                                  <a href="{{route('customer_payment.index')}}" class="btn btn-outline-info btn-icon mr-1 editbtn">
+                                  <a href="{{route('customer.show',$customr->id)}}" class="btn btn-outline-info btn-icon mr-1 editbtn">
                                       <i class="zmdi zmdi-eye"></i></a>
                                   @admin('super')
                                   <button type="submit" class="btn btn-outline-danger btn-icon"><i class="la fas fa-trash"></i></button>

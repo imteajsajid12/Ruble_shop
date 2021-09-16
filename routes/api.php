@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::resource('/Sell', SellController::class);
+Route::post('/payment', [SaveController::class, 'store']);
 
 
 // Route::prefix('/')->name('admin')->group(function () {

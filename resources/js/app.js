@@ -1,7 +1,5 @@
 
 require('./bootstrap');
-
-
 window.Vue = require('vue').default;
 import VueSweetalert2 from 'vue-sweetalert2';
 
@@ -20,9 +18,24 @@ var toastrConfigs = {
 
 }
 Vue.use(CxltToastr, toastrConfigs)
-
 //end
-
+//print
+import Vue from 'vue';
+import VueHtmlToPaper from 'vue-html-to-paper';
+const options = {
+    //name: 'Print',
+    //specs: [
+    //  'fullscreen=yes',
+    //  'titlebar=yes',
+    //  'scrollbars=yes'
+    //],
+  //import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'
+  styles: [
+      '/assets/media/bootstrap.css',
+    ]
+  }
+  Vue.use(VueHtmlToPaper,options);
+  //end
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('Stock', require('./components/stock/Stock.vue').default);

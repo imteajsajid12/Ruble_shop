@@ -7,7 +7,7 @@
   </div>
   <!-- DATA TABLE -->
   <div class="table-responsive m-b-40">
-      <table class="table table-borderless">
+      <table class="table table-borderless" id="data_table">
           <thead class="thead-dark">
               <tr>
                   <th>Name</th>

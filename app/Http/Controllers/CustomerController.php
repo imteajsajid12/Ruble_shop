@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Customer_payment;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -54,6 +55,13 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         // return view('fontend.customer.partials.show');
+        $data = Customer_payment::where('customer_id', $customer->id)->get();
+        return view('fontend.customer_history.index', [
+            'customers_payments' => $data,
+            'customers' => $customer,
+            'Total_due' => $data->sum('due'),
+            'Total_pay' => $data->sum('pay')
+        ]);
     }
 
     /**

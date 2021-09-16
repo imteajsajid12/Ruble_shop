@@ -8,9 +8,10 @@
   </div>
   <!-- DATA TABLE -->
   <div class="table-responsive m-b-40">
-      <table class="table table-borderless">
+      <table class="table table-borderless" id="data_table">
           <thead class="thead-dark">
               <tr>
+                  <th>ID</th>
                   <th>Product Name</th>
                   <th>Product Code</th>
                   <th>Image</th>
@@ -26,11 +27,15 @@
           <tbody>
               @foreach($stocks as $stock)
               <tr id="{{$stock->id }}">
+                  <td>{{ $loop->index+1 }}</td>
                   <td>{{ $stock->product_name }}</td>
                   <td>
                       {{ $stock->product_code }}
                   </td>
-                  <td style="height: 5%;width: 10%; ">
+                  <td style="width: 10%; ">
+                      <img class="w3-circle" style="border-radius: 50%;" src="{{ asset('/assets/images/imteaj.jpg')}}" alt="imteaj" />
+
+
                       {{-- <img :src="`/image/${catagory.image}`" alt="" /> --}}
                   </td>
                   <td class="desc">

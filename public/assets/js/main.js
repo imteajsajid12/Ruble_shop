@@ -332,6 +332,8 @@
     }
 
     // Percent Chart
+    var stock_id = document.getElementById("stock").value;
+    var sell_id = document.getElementById("sell").value;
     var ctx = document.getElementById("percent-chart");
     if (ctx) {
       ctx.height = 280;
@@ -341,7 +343,7 @@
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [stock_id, 60],
               backgroundColor: [
                 '#00b5e9',
                 '#fa4251'
@@ -360,8 +362,8 @@
             }
           ],
           labels: [
-            'Products',
-            'Services'
+            'Stock',
+            'Sell'
           ]
         },
         options: {

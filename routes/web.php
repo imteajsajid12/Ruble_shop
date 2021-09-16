@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\CustomerPaymentController;
+use App\Http\Controllers\MonthlyController;
+use App\Http\Controllers\SaveController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\TodayCostController;
@@ -33,3 +35,7 @@ Route::resource('/admin/customer', CustomerController::class)->middleware('role:
 Route::resource('/admin/customer_payment', CustomerPaymentController::class)->middleware('role:user');
 //sell
 Route::get('/admin/Sell', [SellController::class, 'view'])->name('admin.sell')->middleware('role:user');
+Route::get('/admin/total_sell', [SellController::class, 'total_sell'])->name('admin.totel_sell')->middleware('role:user');
+Route::get('/admin/monthly_add', [MonthlyController::class, 'store'])->name('admin.month')->middleware('role:user');
+
+//Route::get('/admin/invoice', [SaveController::class, 'invoice'])->middleware('role:user');

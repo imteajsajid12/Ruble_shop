@@ -2,19 +2,20 @@
     <div id="app">
         <div class="continer">
             <div class="row">
-                <div class="col-md-8" id="printMe">
+                <div class="col-md-8">
                     <div class="table-responsive table--no-card m-b-40">
                         <table
-                            name="cart"
-                            class="table table-borderless table-striped table-earning"
+                            table
+                            class="table table-bordered table-striped"
                             v-if="show"
                         >
                             <thead>
                                 <tr>
-                                    <th colspan="2">id</th>
+                                    <th>id</th>
                                     <th>name</th>
                                     <th>Quantity</th>
                                     <th>Size</th>
+                                    <th>Discount</th>
                                     <th>Price</th>
 
                                     <th>Item Total</th>
@@ -31,13 +32,13 @@
                                         >x</a
                                     >
                                 </td>
-                                <td>{{ catagory.id }}</td>
                                 <td>{{ catagory.product_name }}</td>
                                 <td>
                                     {{ catagory.product_quantity }}
                                 </td>
                                 <td>{{ catagory.product_size }}</td>
-                                <td>${{ catagory.product_price }}</td>
+                                <td>{{ catagory.discount }} %</td>
+                                <td>${{ catagory.sell_price }}</td>
                                 <td>${{ itemtotal(catagory) }}</td>
                             </tr>
                             <tr>
@@ -54,10 +55,9 @@
                         />
                     </div>
                 </div>
-
-                <!-- <div><img src="../image.barcodr.gif" /></div> -->
-
-                <div class="col-md-3">
+                <!-- <div>
+                    <img src="../image.barcodr.gif" /></div> -->
+                <div class="col-md-4">
                     <form @submit.prevent="editecatagory">
                         <div class="">
                             <div class="form-grup">
@@ -108,6 +108,7 @@
                             <input
                                 type="text"
                                 name="name"
+                                required
                                 class="form-control"
                                 v-model="product.product_name"
                             />
@@ -118,11 +119,13 @@
                                 type="number"
                                 name="slug"
                                 class="form-control"
+                                required
                                 v-model="product_quantity"
                             />
                             <input
                                 type="number"
                                 name="slug"
+                                required
                                 class="form-control"
                                 v-model="product.product_quantity"
                                 hidden
@@ -132,16 +135,25 @@
                                 <input
                                     type="text"
                                     name="slug"
+                                    required
                                     class="form-control"
                                     v-model="product.product_size"
                                 />
                             </div>
+                            <label for="">Discount</label>
+                            <input
+                                type="number"
+                                name="price"
+                                re
+                                class="form-control"
+                                v-model="product_discount"
+                            />
                             <label for="">Price</label>
                             <input
-                                type="text"
+                                type="number"
                                 name="price"
                                 class="form-control"
-                                v-model="product.product_price"
+                                v-model="discount"
                             />
                         </div>
                     </div>
@@ -156,7 +168,7 @@
                         data-target="#staticBackdrop"
                         style="float: right"
                     >
-                        Refresh
+                        Payment
                     </button>
                     <!-- Button trigger modal -->
 
@@ -188,7 +200,7 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form @submit.prevent="refresh">
+                                <form @submit.prevent="payment">
                                     <div class="modal-body">
                                         <span>Total Price</span>
                                         <h3>${{ subtotal }}</h3>
@@ -198,7 +210,6 @@
                                                 type="number"
                                                 class="form-control"
                                                 v-model="product.total_price"
-                                                q
                                                 required
                                             />
                                         </div>
@@ -209,23 +220,83 @@
                                         <button
                                             type="submit"
                                             class="btn btn-secondary"
+                                            data-dismiss="modal"
+                                            aria-label="Close"
                                         >
                                             Close
                                         </button>
                                         <button
-                                            type="submit"
                                             class="btn btn-primary"
+                                            type="submit"
                                         >
-                                            Payment
+                                            print
                                         </button>
                                     </div>
                                 </form>
+                                <div></div>
+                                <div></div>
+                                <div></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- print -->
+        <div class="container  h-100" hidden id="printMe">
+            <div class="row justify-content-center align-self-center">
+                <div class="card" style="width: 30rem;">
+                    <div class="card-body">
+                        <h4 style="text-align:center;">
+                            <b>AR RAZZAQ FASHION</b>
+                        </h4>
+                        <div class="form-grup" style="text-align: center;">
+                            <p>Sannayya 23,Ind,Area, Qater,</p>
+                            <p>Call: +8801819959657 / 97470736535</p>
+
+                            <!-- <span>Farmgate, Dhaka-1216</span> -->
+                        </div>
+                        <br />
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>name</th>
+                                        <th>Q.</th>
+                                        <th>Size.</th>
+                                        <th>%</th>
+                                        <th>price</th>
+                                        <th>subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr
+                                        v-for="catagory in catagorys"
+                                        :key="catagory.id"
+                                    >
+                                        <td>{{ catagory.product_name }}</td>
+                                        <td>
+                                            {{ catagory.product_quantity }}
+                                        </td>
+                                        <td>{{ catagory.product_size }}</td>
+                                        <td>{{ catagory.discount }} %</td>
+                                        <td>{{ catagory.sell_price }} $</td>
+                                        <td>{{ itemtotal(catagory) }} $</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">Total</td>
+                                        <td>{{ subtotal }} $</td>
+                                        <hr />
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end print -->
         <!-- <p>{{data.name }}</p> -->
     </div>
 </template>
@@ -237,6 +308,7 @@ export default {
         return {
             auto: "1",
             // Auto: false,
+            product_discount: "0",
             product_quantity: "1",
             product: {
                 id: "",
@@ -256,43 +328,48 @@ export default {
     computed: {
         subtotal: function() {
             return this.catagorys.reduce((total, item) => {
-                return total + item.product_quantity * item.product_price;
+                return total + item.product_quantity * item.sell_price;
             }, 0.0);
         },
+
         Return_back: function() {
-            //   return this.subtotal((total, item) => {
-            return this.product.total_price - this.subtotal;
-            //   }, 0.0);
+            return this.subtotal - this.product.total_price;
+        },
+        discount: function() {
+            var data = this.product_discount / 100;
+            return this.product.sell_price - this.product.sell_price * data;
         }
     },
     methods: {
         creatcatagory() {
             if (this.product.qty < 1) {
             } else {
-                axios.post("/api/Sell", {
-                    product_name: this.product.product_name,
-                    product_code: this.product.product_code,
-                    product_price: this.product.product_price,
-                    product_quantity: this.product.product_quantity,
-                    sell_price: this.product.sell_price,
-                    product_size: this.product.product_size,
-                    image: this.product.image,
-                    quantity: this.product_quantity
-                });
-                // console.log(this.product.name);
-                this.read();
-                this.clearcart();
-                this.$toast.success({
-                    title: "Success",
-                    message: "Item add successfully"
-                });
+                axios
+                    .post("/api/Sell", {
+                        product_name: this.product.product_name,
+                        product_code: this.product.product_code,
+                        product_price: this.product.product_price,
+                        product_quantity: this.product.product_quantity,
+                        sell_price: this.discount,
+                        product_size: this.product.product_size,
+                        image: this.product.image,
+                        quantity: this.product_quantity,
+                        discount: this.product_discount
+                    })
+                    .then(({ data }) => {
+                        this.read();
+                        this.clearcart();
+                        this.$toast.success({
+                            title: "Success",
+                            message: "Item add successfully"
+                        });
+                    });
             }
         },
         read() {
             axios
                 .get(`/api/Sell`)
                 .then(({ data }) => {
-                    console.log(data);
                     this.catagorys = data;
                 })
                 .catch(err => ocnsole.error(err));
@@ -318,13 +395,6 @@ export default {
                         }
                     }
                 }
-                // this.product = data;
-                // if (this.product.qty < 1) {
-                //     // this.$swal("Heading", "this is a Heading", "OK");
-                // } else {
-                //     this.creatcatagory();
-                //     // this.show = true;
-                // }
             });
         },
         editecatagory1() {
@@ -350,7 +420,6 @@ export default {
             this.read();
             this.clearcart();
         },
-
         deletecatagory(id) {
             this.$swal({
                 title: "Are you sure?",
@@ -387,39 +456,37 @@ export default {
             this.product.product_quantity = "";
             this.product.sell_price = "";
             this.product.product_size = "";
+            this.product_discount = "0";
             this.product.image = "";
             this.product_quantity = "1";
         },
 
-        refresh() {
-            axios.post(`api/data`);
+        payment() {
+            //     .then(({ data }) => {});
             this.read();
             this.clearcart();
             this.print();
         },
-        addQty: function(item) {
-            Object.assign(item, {
-                qty: parseInt(item.product_quantity) + 1
-            });
-        },
-        removeQty: function(item) {
-            Object.assign(item, {
-                qty: parseInt(item.product_quantity) - 1
-            });
-        },
         itemtotal: function(item) {
-            return item.product_quantity * item.product_price;
+            return item.product_quantity * item.sell_price;
         },
         print() {
-            // Pass the element id here
             this.$htmlToPaper("printMe");
+            axios.post(`/api/payment`, {
+                payment: this.subtotal
+            });
+            this.read();
+            //setTimeout(function() {
+            //    this.read();
+            //    //alert("hello");
+            //}, 7000);
         }
     },
     mounted() {
         this.read();
-        // this.Auto = false;
     }
 };
 </script>
 
 <!--vuejs end-->
+<style></style>

@@ -15,10 +15,10 @@ class CreateCustomerPaymentsTable extends Migration
     {
         Schema::create('customer_payments', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('customer_id');
-            $table->string('due');
-            $table->string('pay');
-            $table->string('bay');
+            $table->integer('customer_id');
+            $table->integer('due')->nullable(0);
+            $table->integer('pay')->default(0);
+            $table->integer('bay')->default(0);
             $table->timestamps();
         });
     }
