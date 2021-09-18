@@ -25,8 +25,9 @@
                   <td>
                       {{ $stock->product_code }}
                   </td>
-                  <td style="width: 10%; ">
-                      <img class="w3-circle" style="border-radius: 50%; width:60%" src="{{ asset('/assets/images/imteaj.jpg')}}" alt="imteaj" />
+                  <td style="width: 10%;">
+                      <img class="w3-circle" style="border-radius: 50%; width:60%;height: 50px;" src=" {{ $stock->image ?asset('/image/'.$stock->image) : asset('assets/defult.png')}}" alt="imteaj" />
+                      {{-- <img :src="`/image/${catagory.image}`" alt="" /> --}}
                   </td>
                   <td class="desc">
                       {{ $stock->product_quantity }}
