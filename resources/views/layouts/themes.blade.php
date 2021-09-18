@@ -51,12 +51,14 @@
         <main class="py-4">
             <div class="counter">
                 @yield('content')
+                @include('sweetalert::alert')
             </div>
         </main>
     </div>
 
     {{-- table end --}}
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-- Jquery JS-->
     <script src="{{ asset('/assets/vendor/jquery-3.2.1.min.js') }}"></script>
     <!-- Vendor JS       -->

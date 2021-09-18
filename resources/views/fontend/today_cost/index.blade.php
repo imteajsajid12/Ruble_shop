@@ -25,6 +25,8 @@
 </div>
 @endsection
 @push('js')
+
+
 <script src="{{ asset('js/today_cost/main.js') }}" type="text/javascript"></script>
 
 @endpush

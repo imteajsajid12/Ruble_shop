@@ -104,7 +104,4 @@ class SaveController extends Controller
     {
         return view('fontend.invoice.index', ['save' => Save::all()]);
     }
-    public function monthly()
-    {
-    }
 }

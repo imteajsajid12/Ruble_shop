@@ -23,7 +23,7 @@ use App\Models\Customer_payment;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('admin.home');
 });
 //stock
 Route::resource('/admin/Stock', StockController::class)->middleware('role:user');

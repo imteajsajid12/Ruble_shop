@@ -43,6 +43,7 @@ class CustomerController extends Controller
             'address' => 'required',
         ]);
         Customer::create($attributes);
+        alert()->success('SuccessAlert', 'Customer Successfully Add.');
         return redirect()->route('customer.index');
     }
 
@@ -54,7 +55,6 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        // return view('fontend.customer.partials.show');
         $data = Customer_payment::where('customer_id', $customer->id)->get();
         return view('fontend.customer_history.index', [
             'customers_payments' => $data,
@@ -91,6 +91,7 @@ class CustomerController extends Controller
             'address' => 'required',
         ]);
         $customer->update($attributes);
+        alert()->success('SuccessAlert', 'Customer Successfully Update.');
         return redirect()->route('customer.index');
     }
 
@@ -103,6 +104,7 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+        alert()->success('SuccessAlert', 'Customer Successfully DElETED.');
         return redirect()->route('customer.index');
     }
 }

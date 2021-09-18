@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Today_cost;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TodayCostController extends Controller
 {
@@ -40,6 +41,8 @@ class TodayCostController extends Controller
             'taka' => 'required',
         ]);
         Today_cost::create($attributes);
+        alert()->success('SuccessAlert', 'Today Cost Successfully Add.');
+
         return redirect()->route('today_cost.index');
     }
 
@@ -51,6 +54,7 @@ class TodayCostController extends Controller
      */
     public function show(Today_cost $today_cost)
     {
+        return $today_cost;
     }
 
     /**
@@ -78,6 +82,7 @@ class TodayCostController extends Controller
             'taka' => 'required',
         ]);
         $today_cost->update($attributes);
+        alert()->success('SuccessAlert', 'Today Cost Successfully Update.');
         return redirect()->route('today_cost.index');
     }
 
@@ -89,7 +94,9 @@ class TodayCostController extends Controller
      */
     public function destroy(Today_cost $today_cost)
     {
-        $today_cost->dalete();
+        $today_cost->delete();
+
+        alert()->success('SuccessAlert', 'Today Cost Successfully Deleted.');
         return redirect()->route('today_cost.index');
     }
 }

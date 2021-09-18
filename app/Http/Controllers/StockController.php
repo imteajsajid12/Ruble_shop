@@ -49,13 +49,11 @@ class StockController extends Controller
         if ($request->hasFile('image')) {
             $photo = $request->file('image');
             $imageName = 'image' . Date('H_M_H_s') . '.' . $photo->extension();
-            $attributes['image'] = $imageName;
-            // $photo->storeAs('image/', $imageName, 'public');
             $request->image->move('image/', $imageName);
-            // $path = $request->file('image')->store('public/images');
+            $attributes['image'] = $imageName;
         }
-
         Stock::create($attributes);
+        alert()->success('SuccessAlert', 'Product Successfully Add.');
         return redirect()->route('Stock.index');
     }
 
@@ -101,6 +99,7 @@ class StockController extends Controller
             'image' => 'nullable',
         ]);
         $stock->find($id)->update($attributes);
+        alert()->success('SuccessAlert', 'Product Successfully Update.');
         return redirect()->route('Stock.index');
     }
     /**
@@ -112,11 +111,12 @@ class StockController extends Controller
     public function destroy(Stock $stock, $id)
     {
         $data = $stock->find($id);
-
         $image_path = "image/" . $data->image;
         if (file_exists($image_path)) {
             @unlink($image_path);
         }
         $data->delete();
+        alert()->success('SuccessAlert', 'Product Successfully Delete.');
+        return back();
     }
 }

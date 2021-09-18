@@ -18,7 +18,15 @@ class MonthlyController extends Controller
      */
     public function index()
     {
-        return view('fontend.monthly.index', ['monthly' => Monthly::all()]);
+        return view('fontend.monthly.index', [
+            'monthly' => Monthly::all(),
+            'Due' => Monthly::Sum('due_price'),
+            'Pay' => Monthly::sum('pay_price'),
+            'Cost' => Monthly::sum('cost_price'),
+            'Quantity' => Monthly::sum('sell_quantity'),
+            'Product_price' => Monthly::sum('product_price'),
+            'Sell_price' => Monthly::sum('sell_total_price'),
+        ]);
     }
 
     /**
@@ -43,11 +51,8 @@ class MonthlyController extends Controller
         $month = Monthly::all();
         $due1 = $data->sum('due')
             - $data->sum('pay');
-        $a = 1;
-        $b = 2;
         if ($month->sum('due_price') < $due1) {
             $due = $due1 - $month->sum('due_price');
-            //dd($due);
         } else {
             $due = $due1;
         }
@@ -82,8 +87,7 @@ class MonthlyController extends Controller
         Monthly::create($this->data);
         Sell::getQuery()->delete();
         Today_cost::getQuery()->delete();
-        //Sell::getQuery()->delete();
-
+        alert()->success('SuccessAlert', 'Monthly Data  Successfully Add.');
         return redirect()->route('admin.home');
     }
 

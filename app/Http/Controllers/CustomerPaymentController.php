@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer_payment;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class CustomerPaymentController extends Controller
 {
@@ -46,6 +48,8 @@ class CustomerPaymentController extends Controller
             $attributes['pay']  = 0;
         }
         Customer_payment::create($attributes);
+        alert()->success('SuccessAlert', 'Customer payment Successfully.');
+
         return redirect()->route('customer.index');
     }
 
