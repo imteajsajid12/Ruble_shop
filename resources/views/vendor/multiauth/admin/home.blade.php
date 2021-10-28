@@ -44,7 +44,7 @@
                                     <i class="zmdi zmdi-account-o"></i>
                                 </div>
                                 <div class="text">
-                                    <h2>{{$Due}} Tk</h2>
+                                    {{--<h2>{{$Due}} Tk</h2>--}}
                                     <span>Total Due Price</span>
                                 </div>
                             </div>
@@ -63,7 +63,7 @@
                                     <i class="zmdi zmdi-calendar-note"></i>
                                 </div>
                                 <div class="text">
-                                    <h2>{{$Cost}} Tk</h2>
+                                    {{--<h2>{{$Cost}} Tk</h2>--}}
                                     <span>this Month Shop cost</span>
                                 </div>
                             </div>
