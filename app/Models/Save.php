@@ -19,4 +19,8 @@ class Save extends Model
         'discount',
         'total_price',
     ];
+
+    public static function getQuery()
+    {
+    }
 }

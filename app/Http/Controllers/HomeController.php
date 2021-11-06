@@ -11,4 +11,6 @@ class HomeController extends Controller
     {
         $user = User::all();
     }
+
+
 }

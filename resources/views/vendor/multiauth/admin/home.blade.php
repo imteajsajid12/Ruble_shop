@@ -81,7 +81,7 @@
                                     <i class="zmdi zmdi-shopping-cart"></i>
                                 </div>
                                 <div class="text">
-                                    <h2>{{$product_price}} Tk</h2>
+{{--                                    <h2>{{$product_price}} Tk</h2>--}}
                                     <span>Product total price</span>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                     <i class="zmdi zmdi-money"></i>
                                 </div>
                                 <div class="text">
-                                    <h2>{{$Sell_price}} TK</h2>
+{{--                                    <h2>{{$Sell_price}} TK</h2>--}}
                                     <span>Product total earnings</span>
 
                                 </div>
@@ -167,8 +167,8 @@
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
-                                    <input type="text" name="stock" id="stock" value="{{$stock}}" hidden>
-                                    <input type="text" name="sell" id="sell" value="{{$Sell}}" hidden>
+{{--                                    <input type="text" name="stock" id="stock" value="{{$stock}}" hidden>--}}
+{{--                                    <input type="text" name="sell" id="sell" value="{{$Sell}}" hidden>--}}
                                     <div class="percent-chart">
                                         <canvas id="percent-chart"></canvas>
                                     </div>
@@ -181,7 +181,7 @@
             @admin('any_role')
             <div class="row">
                 <div class="col-lg-12">
-                    @include('fontend.total_sell.partials.Table')
+{{--                    @include('fontend.total_sell.partials.Table')--}}
                 </div>
                 {{-- <example-component></example-component>
                 <Stock></Stock> --}}
@@ -196,5 +196,6 @@
             @endadmin
         </div>
     </div>
+
     <!-- END MAIN CONTENT-->
     @endsection
