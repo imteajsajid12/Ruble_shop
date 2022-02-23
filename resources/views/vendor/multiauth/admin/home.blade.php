@@ -63,8 +63,8 @@
                                     <i class="zmdi zmdi-calendar-note"></i>
                                 </div>
                                 <div class="text">
-                                    {{--<h2>{{$Cost}} Tk</h2>--}}
-                                    <span>this Month Shop cost</span>
+                                    <h2>{{$Monthly_price}} Tk</h2>
+                                    <span>this Month Shop total</span>
                                 </div>
                             </div>
                             <div class="overview-chart">
@@ -81,7 +81,7 @@
                                     <i class="zmdi zmdi-shopping-cart"></i>
                                 </div>
                                 <div class="text">
-{{--                                    <h2>{{$product_price}} Tk</h2>--}}
+                                   <h2>{{$Stock_product_price}} Tk</h2>
                                     <span>Product total price</span>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                     <i class="zmdi zmdi-money"></i>
                                 </div>
                                 <div class="text">
-{{--                                    <h2>{{$Sell_price}} TK</h2>--}}
+                                   <h2>{{$Total_sell_product_price}} TK</h2>
                                     <span>Product total earnings</span>
 
                                 </div>
@@ -158,17 +158,17 @@
                                     <div class="chart-note-wrap">
                                         <div class="chart-note mr-0 d-block">
                                             <span class="dot dot--blue"></span>
-                                            <span>Stock</span>
+                                            <span>Stock  {{$Total_product}}</span>
                                         </div>
                                         <div class="chart-note mr-0 d-block">
                                             <span class="dot dot--red"></span>
-                                            <span>Sell</span>
+                                            <span>Sell {{$Total_sell_product}}</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
-{{--                                    <input type="text" name="stock" id="stock" value="{{$stock}}" hidden>--}}
-{{--                                    <input type="text" name="sell" id="sell" value="{{$Sell}}" hidden>--}}
+                                   <input type="text" name="stock" id="stock" value="{{$Total_product}}" hidden>
+                                   <input type="text" name="sell" id="sell" value="{{$Total_sell_product}}" hidden>
                                     <div class="percent-chart">
                                         <canvas id="percent-chart"></canvas>
                                     </div>
@@ -181,10 +181,10 @@
             @admin('any_role')
             <div class="row">
                 <div class="col-lg-12">
-{{--                    @include('fontend.total_sell.partials.Table')--}}
+                   {{--@include('fontend.total_sell.partials.Table')--}}
                 </div>
-                {{-- <example-component></example-component>
-                <Stock></Stock> --}}
+                <example-component></example-component>
+                <Stock></Stock>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="copyright">

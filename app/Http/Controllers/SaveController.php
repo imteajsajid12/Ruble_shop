@@ -24,7 +24,7 @@ class SaveController extends Controller
      *
      * @return Response
      */
-    public function create(): Response
+    public function create()
     {
         //
     }
@@ -52,7 +52,7 @@ class SaveController extends Controller
             $this->data['total_price']            = $value;
             Sell::create($this->data);
         }
-        Save::getQuery()->delete();
+        Save::truncate();
         return response()->json(['success' => 'You have successfully Save.']);
     }
 
@@ -96,7 +96,7 @@ class SaveController extends Controller
      * @param Save $save
      * @return Response
      */
-    public function destroy(Save $save): Response
+    public function destroy(Save $save)
     {
         //
     }

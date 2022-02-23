@@ -44,8 +44,8 @@ Vue.component('Sell', require('./components/Sell.vue').default);
 
 const app = new Vue({
     el: '#app',
-  mounted() {
-            const audio = new Audio('/assets/media/iphone.mp3');
-            audio.play();    
-  }
+//  mounted() {
+//            const audio = new Audio('/assets/media/iphone.mp3');
+//            audio.play();
+//  }
 });

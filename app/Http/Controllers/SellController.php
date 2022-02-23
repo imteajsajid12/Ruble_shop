@@ -134,9 +134,9 @@ class SellController extends Controller
      */
     public function destroy($id)
     {
-        $data = Save::find($id);
-        $stock = Stock::where('product_code', $data->product_code)->first();
-        $quantity = $data->product_quantity + $stock->product_quantity;
+        $data      = Save::find($id);
+        $stock     = Stock::where('product_code', $data->product_code)->first();
+        $quantity  = $data->product_quantity + $stock->product_quantity;
         $stock->product_quantity =  $quantity;
         $stock->Save();
         $data->delete();

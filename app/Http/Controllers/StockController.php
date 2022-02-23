@@ -45,14 +45,19 @@ class StockController extends Controller
             'product_size' => 'required',
             'image' => 'nullable',
         ]);
-        // dd($attributes);
+        // image Uplide
         if ($request->hasFile('image')) {
             $photo = $request->file('image');
             $imageName = 'image' . Date('H_M_H_s') . '.' . $photo->extension();
             $request->image->move('image/', $imageName);
             $attributes['image'] = $imageName;
         }
+        // total price
+        $attributes['total_price'] =
+         $request['product_price'] * $request['product_quantity'];
+
         Stock::create($attributes);
+
         alert()->success('SuccessAlert', 'Product Successfully Add.');
         return redirect()->route('Stock.index');
     }

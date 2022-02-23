@@ -19,6 +19,7 @@ class CreateStocksTable extends Migration
             $table->string('product_code');
             $table->string('product_quantity');
             $table->string('product_price');
+            $table->string('total_price');
             $table->string('sell_price');
             $table->string('product_size');
             $table->string('image')->nullable();

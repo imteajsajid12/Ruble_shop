@@ -41,12 +41,17 @@
                                 <td>${{ catagory.sell_price }}</td>
                                 <td>${{ itemtotal(catagory) }}</td>
                             </tr>
+                            <tr colspan="5">
+                                <td colspan="6">Vat</td>
+                                <td>${{ subtotal }}</td>
+                            </tr>
                             <tr>
                                 <td colspan="6">Total</td>
                                 <td>${{ subtotal }}</td>
                             </tr>
                         </table>
                     </div>
+
                     <div v-if="!show">
                         <img
                             src="/image/bercode.gif"
@@ -239,6 +244,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Modal -->
                 </div>
             </div>
         </div>
@@ -283,6 +289,11 @@
                                         <td>{{ catagory.discount }} %</td>
                                         <td>{{ catagory.sell_price }} $</td>
                                         <td>{{ itemtotal(catagory) }} $</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5">Vat</td>
+                                        <td>{{ subtotal }} $</td>
+                                        <hr />
                                     </tr>
                                     <tr>
                                         <td colspan="5">Total</td>

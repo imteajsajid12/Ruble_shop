@@ -18,6 +18,7 @@
                   <th>Product Quantity</th>
                   <th>Sell price</th>
                   <th>Product Price</th>
+                  <th>Total Price</th>
                   <th>Product Size</th>
                   @admin('any_role')
                   <th>Action</th>
@@ -42,6 +43,9 @@
                   <td>{{ $stock->product_price }} TK</td>
                   <td>
                       <span class="status--process">{{ $stock->sell_price }} Tk</span>
+                  </td>
+                  <td>
+                      <span class="status--process">{{ $stock->total_price }} Tk</span>
                   </td>
                   <td>{{ $stock->product_size }}</td>
                   @admin('any_role')
